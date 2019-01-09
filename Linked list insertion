@@ -1,0 +1,87 @@
+#include <iostream>
+using namespace std;
+
+class Node{
+    public:
+    int data;
+    Node* next;
+
+    Node(int d){
+        data=d;
+        next=NULL;
+    }
+};
+
+Node* createLL(){
+    Node* head=NULL;
+    Node* tail=NULL;
+    int x;
+
+    while(true){
+        cin>>x;
+        if(x==-1)break;
+            Node* NewNode = new Node(x);
+
+            if(head==NULL){
+                head = NewNode;
+                tail=NewNode;
+            }
+
+            else{
+                tail->next=NewNode;
+                tail=tail->next;
+            }
+        }
+    return head;
+}
+
+void Display(Node* head){
+    Node*cur = head;
+    while(cur!=NULL){
+        cout<<cur->data<<"->";
+        cur=cur->next;
+    }
+}
+
+Node* insert_in_beg(Node* head, int z){
+    Node* NewNode = new Node(z);
+    NewNode->next=head;
+    head = NewNode;
+    return head;
+}
+
+void insert_in_end (Node* head, int z){
+    Node* NewNode = new Node(z);
+    Node* cur = head;
+    while(cur->next!=NULL){
+        cur=cur->next;
+    }
+    cur->next= NewNode;
+}
+
+void insert_in_mid(Node*head, int compare, int u){
+    Node* NewNode = new Node(u);
+    Node* cur= head;
+    Node* ahead = head->next;
+    while(ahead->data!=compare){
+        cur=cur->next;
+        ahead= ahead->next;
+    }
+    cur->next= NewNode;
+    NewNode->next = ahead;
+}
+
+int main()
+{
+    Node* head = createLL();
+    Display(head);
+    cout<<endl;
+    insert_in_end(head,5);
+    Display(head);
+    cout<<endl;
+    head=insert_in_beg(head,5);
+    Display(head);
+    cout<<endl;
+    insert_in_mid(head,7,5);
+    Display(head);
+}
