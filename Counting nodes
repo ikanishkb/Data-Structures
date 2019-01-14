@@ -44,6 +44,7 @@ void Display(Node* head){
     }
 }
 
+//iteratively
 int counter(Node* head){
     int count=0;
     Node*cur = head;
@@ -54,11 +55,25 @@ int counter(Node* head){
     return count;
 }
 
+int count= 0;
+
+//recursively
+int reccounter(Node* head){
+    if(head == NULL){
+        return 0;
+    }
+    else{
+        return 1+reccounter(head->next);
+    }
+}
+
 int main()
 {
     Node* head = createLL();
     Display(head);
     cout<<endl;
     int count=counter(head);
-    cout<<count;
+    cout<<count<<endl;
+    int count2= reccounter(head);
+    cout<<count2;
 }
