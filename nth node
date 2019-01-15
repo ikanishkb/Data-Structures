@@ -44,7 +44,7 @@ void Display(Node* head){
     }
 }
 
-
+//nth node from begining
 int nthnode(Node* head, int data){
     int count=1;
     Node*cur = head;
@@ -60,6 +60,20 @@ int nthnode(Node* head, int data){
     return NULL;
 }
 
+//nth node from end
+int nthfromend(Node* head, int n){
+    Node* cur = head;
+    Node* ahead = head;
+    for(int i=0;i<n;i++){
+        ahead=ahead->next;
+    }
+    while(ahead!=NULL){
+        ahead=ahead->next;
+        cur=cur->next;
+    }
+    return cur->data;
+}
+
 
 int main()
 {
@@ -67,4 +81,5 @@ int main()
     Display(head);
     cout<<endl;
     cout<<nthnode(head,5);
+    cout<<endl<<nthfromend(head, 3);
 }
