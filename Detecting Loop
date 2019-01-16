@@ -1,0 +1,66 @@
+#include <iostream>
+using namespace std;
+
+class Node{
+public:
+int data;
+Node* next;
+Node(int d){
+    data=d;
+    next=NULL;
+    }
+};
+
+Node* createLL(){
+    Node* head = NULL;
+    Node* tail = NULL;
+    int x;
+
+    while(true){
+        cin>>x;
+        if(x==-1)break;
+        Node* NewNode = new Node(x);
+
+        if(head==NULL){
+            head=NewNode;
+            tail=NewNode;
+        }
+        else{
+            tail->next= NewNode;
+            tail = tail->next;
+        }
+    }
+    return head;
+}
+
+void Display(Node* head){
+    Node*cur=head;
+    while(cur!=NULL){
+        cout<<cur->data<<"->";
+        cur=cur->next;
+    }
+    cout<<endl;
+}
+
+bool isloop(Node* head){
+    Node* slow = head;
+    Node* fast = head->next->next;
+
+    while(slow!=NULL && fast!=NULL && fast->next!=NULL){
+        if(slow == fast){
+            return 1;
+        }
+        else{
+            slow=slow->next;
+            fast = fast ->next->next;
+        }
+        return 0;
+    }
+}
+
+int main()
+{
+    Node* head = createLL();
+    Display(head);
+    cout<<isloop(head);
+}
