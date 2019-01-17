@@ -24,6 +24,7 @@ Node* createLL(){
         if(head==NULL){
             head=NewNode;
             tail=NewNode;
+            }
         
         else{
             tail->next= NewNode;
